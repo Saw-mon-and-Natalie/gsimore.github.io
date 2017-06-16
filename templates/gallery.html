@@ -1,0 +1,66 @@
+{% extends 'head.html' %}
+
+{% block background %}
+    <div id="horizon" class="horizon scroll">
+    </div>
+
+    <div id="middle" class="mid scroll">
+      <img src="/static/img/tree.png">
+    </div>
+
+{% endblock %}
+
+
+{% block content %}
+<div id="gallery-welcome-container" class="scroll">
+    <div id="gallery-welcome" class="title-text">
+        <p> {{ page.subtitle }} :</p>
+        <b> {{ show.show_title }} </b>
+    </div>
+</div>
+
+<section class="front scroll">
+
+    <article id="gallery-container">
+
+        {% for piece in show.show_pieces.all %}
+
+            {% if piece.orientation == 'L' or piece.orientation == 'O' %}
+                <item id="collage-02" class="collage-tile-l gallery-item">
+
+            {% elif piece.orientation == 'P' %}
+                <item id="collage-02" class="collage-tile-p gallery-item">
+
+            {% endif %}
+
+                <aside id="image-02" class="painting-2">
+                    <a href="{% url 'piece_detail' slug=piece.slug %}">
+                        <img src="{{ piece.thumbnail_image.url }}">
+                    </a>
+                </aside>
+
+                <aside class="plaque-2">
+                    <div>
+                        <b>{{ piece.title }}</b>
+                        <br>
+                        {{ piece.width_in }}x{{ piece.height_in }}"
+                        <br>
+                        {{ piece.medium }}
+                    </div>
+                </aside>
+
+            </item> <!-- end collage-02; tile for pieces -->
+
+        {% endfor %}
+
+    </article>
+</section>
+{% endblock %}
+
+{% block scripts %}
+
+    <!-- jQuery invert scroll plugin-->
+    <script src="/static/js/jquery.jInvertScroll.js"></script>
+    <script src="/static/js/custom-scroll.js"></script>
+
+{% endblock %}

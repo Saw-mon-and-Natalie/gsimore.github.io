@@ -1,0 +1,50 @@
+{% extends 'head.html' %}
+{% block title %}{{ page.subtitle }} {{ block.super }}{% endblock %}
+
+
+{% block background %}
+    <div class="horizon-contact">
+    </div>
+
+    <div id="middle" class="mid-contact">
+    </div>
+{% endblock %}
+
+
+{% block messages %}
+<!-- messages broken; attempting to display form submission and error messages-->
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}
+
+
+{% block content %}
+    <div class="front-contact">
+        <div class="contact-parent">
+            <h1 id="contact" class="contact-item">Contact</h1>
+            <table>
+                <form id="contact-form" class="contact-item" role="form" action="" method="post">
+                    {% csrf_token %}
+                    <br>
+                    <p>Your name:
+                        <br> {{ form.contact_name }}
+                    </p>
+                    <p>Your email:
+                        <br> {{ form.contact_email }}
+                    </p>
+                    <p>What would you like to say?
+                        <br>{{ form.content }}
+                    </p>
+                    <br>
+                    <input type="submit"/>
+                </form>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}

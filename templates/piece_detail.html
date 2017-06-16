@@ -1,0 +1,85 @@
+{% extends 'head.html' %}
+
+{% block background %}
+    <div class="horizon-small">
+    </div>
+
+<!--
+<div class="middle">
+      <img src="/static/img/middle.png" alt="" />
+    </div>
+-->
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="front-small">
+
+      <div class="detail-parent">
+
+          <div class="detail-item">
+              <a id="previous-button" class="arrow-buttons btn btn-lg" href="/art/{{previous_slug}}">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+              </a>
+          </div>
+
+          {% if piece.orientation == 'L' %}
+              <div class="detail-item">
+                  <div class="img-detail">
+                      <img id="zoom_01" src="{{piece.small_image.url}}" data-zoom-image="{{piece.large_image.url}}"/>
+                  </div>
+                  <a href="{% url 'contact' %}" id="art-print-button" class="detail-buttons btn btn-lg active" role="button">Buy Prints</a>
+                  <a href="{% url 'contact' %}" id="request-quote" class="detail-buttons btn btn-lg active" role="button">Request Quote</a>
+              </div>
+
+              <div class="detail-item">
+                  <div id="detail-plaque-l" class="detail-plaque">
+                      <span class="title-text"><b>{{  piece.title  }}</b></span>
+                      <br><span class="sub-text">{{ piece.get_medium_display }}</span>
+                      <br><span class="sub-text2">{{ piece.width_in }} in x {{ piece.height_in }} in </span>
+                      <br>
+                      <br><span class="sub-text3">{{ piece.description }}</span>
+                  </div>
+
+                  <div id="zoom-container-container-l">
+                      <div id="zoom-container-l">
+                      </div>
+                  </div>
+              </div>
+
+          {% elif piece.orientation == 'P' or piece.orientation == 'O' %}
+              <div class="detail-item">
+                  <div id="detail-plaque-p" class="detail-plaque">
+                      <span class="title-text"><b>{{  piece.title  }}</b></span>
+                      <br><span class="sub-text">{{piece.get_medium_display}}</span>
+                      <br><span class="sub-text2">{{piece.width_in}} in x {{piece.height_in}} in </span>
+                      <br>
+                      <br><span class="sub-text3">{{ piece.description}}</span>
+                  </div>
+                  <a href="{% url 'contact' %}" id="request-quote" class="detail-buttons btn btn-lg active" role="button">Request Quote</a>
+                  <a href="{% url 'contact' %}" id="art-print-button" class="detail-buttons btn btn-lg active" role="button">Buy Prints</a>
+              </div>
+
+              <div class="img-detail-p detail-item">
+                  <img id="zoom_02" src="{{piece.thumbnail_image.url}}" data-zoom-image="{{piece.large_image.url}}"/>
+              </div>
+
+              <div class="detail-item">
+                  <div id="zoom-container-container">
+                      <div id="zoom-container">
+                      </div>
+                  </div>
+              </div>
+          {% endif %}
+
+          <div class="detail-item">
+              <a id="next-button" class="arrow-buttons btn btn-lg" href="/art/{{next_slug}}">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+              </a>
+          </div>
+
+    </div>
+
+</div>
+{% endblock %}
